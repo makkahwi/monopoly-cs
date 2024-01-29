@@ -25,7 +25,7 @@ export default function TransactionsHistory({ transactions }) {
       className="rounded-lg p-5 my-5"
       style={{ backgroundColor: "rgba(0,0,0,0.35)" }}
     >
-      <h2 className="title">Transactions</h2>
+      <h2 className="title">Transactions History</h2>
 
       <Table className="tablesorter" responsive>
         <thead>

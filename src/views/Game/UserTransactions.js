@@ -26,7 +26,7 @@ export default function UserTransactions({
       className="rounded-lg p-5 my-5"
       style={{ backgroundColor: "rgba(0,0,0,0.35)" }}
     >
-      <h2 className="title">Transaction To User</h2>
+      <h2 className="title">Send Credit To User From Yours</h2>
 
       <Form>
         <Row>

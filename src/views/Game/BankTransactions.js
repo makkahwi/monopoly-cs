@@ -28,13 +28,13 @@ export default function BankTransactions({
 
   return (
     <Container className="p-5 my-5">
-      <h2 className="title">Bank Transaction</h2>
+      <h2 className="title">Send Credit To User From Bank</h2>
 
       <h3 className="title">Quick Transactions</h3>
 
       <Row>
         <Col xs="12">
-          <h4 className="title">Round Transaction of 200</h4>
+          <h4>Round Transaction of 200</h4>
         </Col>
 
         {players.map(({ key, name }, x) => (
