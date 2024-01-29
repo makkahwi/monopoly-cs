@@ -4,6 +4,7 @@ import TransactionsHistory from "./TransactionsHistory";
 import UserTransactions from "./UserTransactions";
 import WelcomeSection from "./Welcome";
 import BankTransactionRequest from "./BankTransactionRequest";
+import PlayersList from "./PlayersList";
 
 export default function GamePage() {
   const initialTransactionValues = {
@@ -64,10 +65,17 @@ export default function GamePage() {
       {
         key: 2,
         name: "Player X",
+        status: "Active",
+      },
+      {
+        key: 3,
+        name: "Player Y",
+        status: "Lost",
       },
       {
         key: 4,
-        name: "Player Y",
+        name: "Player Z",
+        status: "Active",
       },
     ]);
   }, []);
@@ -77,7 +85,10 @@ export default function GamePage() {
       <WelcomeSection players={players} credit={500} />
 
       <UserTransactions
-        players={[...players, bankInfo]}
+        players={[
+          ...players.filter(({ status }) => status == "Active"),
+          bankInfo,
+        ]}
         values={userTransactionValues}
         setValues={setUserTransactionValues}
         submit={submitUserTransaction}
@@ -90,13 +101,15 @@ export default function GamePage() {
       />
 
       <BankTransactions
-        players={players}
+        players={players.filter(({ status }) => status == "Active")}
         values={bankTransactionValues}
         setValues={setBankTransactionValues}
         submit={submitBankTransaction}
       />
 
       <TransactionsHistory data={transactionsData} />
+
+      <PlayersList data={players} />
     </Fragment>
   );
 }

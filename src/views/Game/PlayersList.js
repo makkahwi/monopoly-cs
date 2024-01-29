@@ -1,22 +1,14 @@
-import { Container, Table } from "reactstrap";
+import { Button, ButtonGroup, Container, Table } from "reactstrap";
 
-export default function TransactionsHistory({ data }) {
+export default function PlayersList({ data }) {
   const tableColumns = [
     {
-      key: "from",
-      label: "From",
+      key: "name",
+      label: "Name",
     },
     {
-      key: "to",
-      label: "To",
-    },
-    {
-      key: "amount",
-      label: "Amount",
-    },
-    {
-      key: "note",
-      label: "Note",
+      key: "status",
+      label: "Status",
     },
   ];
 
@@ -25,7 +17,7 @@ export default function TransactionsHistory({ data }) {
       className="rounded-lg p-5 my-5"
       style={{ backgroundColor: "rgba(0,0,0,0.35)" }}
     >
-      <h2 className="title">Transactions History</h2>
+      <h2 className="title">Players List</h2>
 
       <Table responsive>
         <thead>
@@ -34,6 +26,7 @@ export default function TransactionsHistory({ data }) {
             {tableColumns.map(({ label }, x) => (
               <th key={x}>{label}</th>
             ))}
+            <th>Actions</th>
           </tr>
         </thead>
 
@@ -44,6 +37,17 @@ export default function TransactionsHistory({ data }) {
               {tableColumns.map(({ key }, y) => (
                 <td key={y}>{transaction[key]}</td>
               ))}
+              <td>
+                <ButtonGroup>
+                  <Button className="btn-icon" color="warning" size="sm">
+                    <i className="fas fa-heart-crack" />
+                  </Button>
+
+                  <Button className="btn-icon" color="danger" size="sm">
+                    <i className="fas fa-trash" />
+                  </Button>
+                </ButtonGroup>
+              </td>
             </tr>
           ))}
         </tbody>
