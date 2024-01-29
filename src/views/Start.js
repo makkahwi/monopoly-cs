@@ -23,7 +23,7 @@ export default function StartPage() {
 
   const [focuses, setFocuses] = useState({});
   const [values, setValues] = useState({
-    playerName: "",
+    playerName: localStorage.getItem("name") || "",
     gameCode: queryParameters.get("code") || "",
     initialCredit: 1000,
     roundBonus: 200,
@@ -32,14 +32,16 @@ export default function StartPage() {
   const joinGame = (e) => {
     e.preventDefault();
     console.log("Joining a game");
-    localStorage.setItem("game", "123123");
+    localStorage.setItem("game", "MYR123");
+    localStorage.setItem("name", "Suhaib");
     navigate(0);
   };
 
   const startGame = (e) => {
     e.preventDefault();
     console.log("Starting a game");
-    localStorage.setItem("game", "123123");
+    localStorage.setItem("game", "SAR321");
+    localStorage.setItem("name", "Suhaib");
     navigate(0);
   };
 

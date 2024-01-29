@@ -2,11 +2,12 @@ import { Button, ButtonGroup, Container } from "reactstrap";
 
 export default function WelcomeSection() {
   const code = localStorage.getItem("game");
-  const url = "https://monopoly-cs.vercel.com";
+  const name = localStorage.getItem("name");
+  const url = "https://monopoly-cs.vercel.app";
 
   return (
     <Container className="p-5 my-5">
-      <h2 className="title">Welcome</h2>
+      <h2 className="title">Welcome {name}</h2>
 
       <h3>
         Game Code: {code}
