@@ -37,7 +37,7 @@ export default function BankTransactions({
 
         {players.map(({ key, name }, x) => (
           <Col key={x}>
-            <Button color="primary" type="button" className="my-4">
+            <Button color="info" type="button" className="my-4">
               {name}
             </Button>
           </Col>
@@ -93,7 +93,7 @@ export default function BankTransactions({
             <Label>Note</Label>
 
             <UncontrolledDropdown>
-              <DropdownToggle caret className="btn-block" color="primary">
+              <DropdownToggle caret className="btn-block" color="info">
                 {values.note || "Note"}
               </DropdownToggle>
 
@@ -116,7 +116,7 @@ export default function BankTransactions({
           </Col>
         </Row>
 
-        <Button color="primary" type="button" className="my-4" onClick={submit}>
+        <Button color="info" type="button" className="my-4" onClick={submit}>
           Submit Transaction
         </Button>
       </Form>

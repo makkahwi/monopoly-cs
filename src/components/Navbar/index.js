@@ -54,7 +54,7 @@ export default function NavbarComp() {
           <NavItem>
             <ButtonGroup className="nav-link">
               <a href="https://linktr.ee/makkahwi" target="_blank">
-                <Button color="success" size="sm">
+                <Button color="info" size="sm">
                   <p>Check Developer</p>
                 </Button>
               </a>

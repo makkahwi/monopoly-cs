@@ -130,7 +130,7 @@ export default function StartPage() {
               <Button
                 block
                 className="btn-round"
-                color="primary"
+                color="info"
                 onClick={joinGame}
               >
                 Join
@@ -220,7 +220,7 @@ export default function StartPage() {
               <Button
                 block
                 className="btn-round"
-                color="primary"
+                color="info"
                 onClick={startGame}
               >
                 Start

@@ -16,24 +16,26 @@ export default function WelcomeSection({ players, credit }) {
         Game Code: {code}
         <ButtonGroup className="mx-3">
           <Button
-            color="primary"
+            color="info"
             type="button"
             size="sm"
             onClick={() => navigator.clipboard.writeText(code)}
           >
+            <i className="fas fa-copy mr-1" />
             Copy Code
           </Button>
 
           <Button
-            color="success"
+            color="default"
             type="button"
             size="sm"
             onClick={() =>
               window.open(
-                `https://wa.me/?text=Join%20Me%20On%20Monopoly%20Calculator%20With%20Code:%20${code}%20@%20${url}?code=${code}`
+                `https://wa.me/?text=Join%20Me%20On%20Monopoly%20Credit%20Sheet%20With%20Code:%20${code}%20@%20${url}?code=${code}`
               )
             }
           >
+            <i className="fab fa-whatsapp mr-1" />
             Share On Wasap
           </Button>
         </ButtonGroup>
