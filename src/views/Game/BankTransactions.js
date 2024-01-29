@@ -27,7 +27,10 @@ export default function BankTransactions({
   ];
 
   return (
-    <Container className="p-5 my-5">
+    <Container
+      className="rounded-lg p-5 my-5"
+      style={{ backgroundColor: "rgba(0,0,0,0.35)" }}
+    >
       <h2 className="title">Send Credit To User From Bank</h2>
 
       <h3 className="title">Quick Transactions</h3>
