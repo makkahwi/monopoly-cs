@@ -10,6 +10,7 @@ export default function GamePage() {
     amount: 0,
     note: "",
   });
+
   const [bankTransactionValues, setBankTransactionValues] = useState({
     recipient: "",
     amount: 0,
@@ -56,7 +57,7 @@ export default function GamePage() {
 
   return (
     <Fragment>
-      <WelcomeSection />
+      <WelcomeSection credit={500} />
 
       <UserTransactions
         players={players}
