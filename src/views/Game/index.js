@@ -3,6 +3,7 @@ import BankTransactions from "./BankTransactions";
 import TransactionsHistory from "./TransactionsHistory";
 import UserTransactions from "./UserTransactions";
 import WelcomeSection from "./Welcome";
+import BankTransactionRequest from "./BankTransactionRequest";
 
 export default function GamePage() {
   const [userTransactionValues, setUserTransactionValues] = useState({
@@ -65,6 +66,12 @@ export default function GamePage() {
         userTransactionValues={userTransactionValues}
         setUserTransactionValues={setUserTransactionValues}
         submitUserTransaction={submitUserTransaction}
+      />
+
+      <BankTransactionRequest
+        bankTransactionValues={bankTransactionValues}
+        setBankTransactionValues={setBankTransactionValues}
+        submitBankTransaction={submitBankTransaction}
       />
 
       <BankTransactions

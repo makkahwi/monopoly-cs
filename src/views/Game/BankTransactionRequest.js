@@ -13,47 +13,22 @@ import {
   UncontrolledDropdown,
 } from "reactstrap";
 
-export default function UserTransactions({
-  players,
-  userTransactionValues,
-  setUserTransactionValues,
-  submitUserTransaction,
+export default function BankTransactionRequest({
+  bankTransactionValues,
+  setBankTransactionValues,
+  submitBankTransaction,
 }) {
-  const userNotes = ["Rent", "Buy", "Chance / X", "Tax"];
+  const bankNotes = ["Round", "Chance / X", "Mortgage"];
 
   return (
     <Container
       className="rounded-lg p-5 my-5"
       style={{ backgroundColor: "rgba(0,0,0,0.35)" }}
     >
-      <h2 className="title">Send Credit</h2>
+      <h2 className="title">Request Credit From Bank</h2>
 
       <Form>
         <Row>
-          <Col md="4" xs="6">
-            <p className="category">Recipient</p>
-
-            {players.map(({ key, name }, x) => (
-              <FormGroup check className="form-check-radio" key={x}>
-                <Label check>
-                  <Input
-                    name="userTransactionRecipient"
-                    type="radio"
-                    checked={userTransactionValues.recipient == key}
-                    onClick={() =>
-                      setUserTransactionValues((current) => ({
-                        ...current,
-                        recipient: key,
-                      }))
-                    }
-                  />
-                  <span className="form-check-sign" />
-                  {name}
-                </Label>
-              </FormGroup>
-            ))}
-          </Col>
-
           <Col md="4" xs="6">
             <p className="category">Amount</p>
 
@@ -61,9 +36,9 @@ export default function UserTransactions({
               <Input
                 placeholder="Amount"
                 type="number"
-                value={userTransactionValues.amount}
+                value={bankTransactionValues.amount}
                 onChange={(e) =>
-                  setUserTransactionValues((current) => ({
+                  setBankTransactionValues((current) => ({
                     ...current,
                     amount: e.target.value,
                   }))
@@ -77,15 +52,15 @@ export default function UserTransactions({
 
             <UncontrolledDropdown>
               <DropdownToggle caret className="btn-block" color="primary">
-                {userTransactionValues.note || "Note"}
+                {bankTransactionValues.note || "Note"}
               </DropdownToggle>
 
               <DropdownMenu>
-                {userNotes.map((note, x) => (
+                {bankNotes.map((note, x) => (
                   <DropdownItem
                     href="#pablo"
                     onClick={() =>
-                      setUserTransactionValues((current) => ({
+                      setBankTransactionValues((current) => ({
                         ...current,
                         note: note,
                       }))
@@ -104,9 +79,9 @@ export default function UserTransactions({
           color="primary"
           type="button"
           className="my-4"
-          onClick={submitUserTransaction}
+          onClick={submitBankTransaction}
         >
-          Submit Transaction
+          Submit Request
         </Button>
       </Form>
     </Container>
