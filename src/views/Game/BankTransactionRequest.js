@@ -13,11 +13,7 @@ import {
   UncontrolledDropdown,
 } from "reactstrap";
 
-export default function BankTransactionRequest({
-  bankTransactionValues,
-  setBankTransactionValues,
-  submitBankTransaction,
-}) {
+export default function BankTransactionRequest({ values, setValues, submit }) {
   const bankNotes = ["Round", "Chance / X", "Mortgage"];
 
   return (
@@ -36,9 +32,9 @@ export default function BankTransactionRequest({
               <Input
                 placeholder="Amount"
                 type="number"
-                value={bankTransactionValues.amount}
+                value={values.amount}
                 onChange={(e) =>
-                  setBankTransactionValues((current) => ({
+                  setValues((current) => ({
                     ...current,
                     amount: e.target.value,
                   }))
@@ -52,7 +48,7 @@ export default function BankTransactionRequest({
 
             <UncontrolledDropdown>
               <DropdownToggle caret className="btn-block" color="primary">
-                {bankTransactionValues.note || "Note"}
+                {values.note || "Note"}
               </DropdownToggle>
 
               <DropdownMenu>
@@ -60,7 +56,7 @@ export default function BankTransactionRequest({
                   <DropdownItem
                     href="#pablo"
                     onClick={() =>
-                      setBankTransactionValues((current) => ({
+                      setValues((current) => ({
                         ...current,
                         note: note,
                       }))
@@ -75,12 +71,7 @@ export default function BankTransactionRequest({
           </Col>
         </Row>
 
-        <Button
-          color="primary"
-          type="button"
-          className="my-4"
-          onClick={submitBankTransaction}
-        >
+        <Button color="primary" type="button" className="my-4" onClick={submit}>
           Submit Request
         </Button>
       </Form>

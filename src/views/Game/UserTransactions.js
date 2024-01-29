@@ -15,9 +15,9 @@ import {
 
 export default function UserTransactions({
   players,
-  userTransactionValues,
-  setUserTransactionValues,
-  submitUserTransaction,
+  values,
+  setValues,
+  submit,
 }) {
   const userNotes = ["Rent", "Buy", "Chance / X", "Tax"];
 
@@ -39,9 +39,9 @@ export default function UserTransactions({
                   <Input
                     name="userTransactionRecipient"
                     type="radio"
-                    checked={userTransactionValues.recipient == key}
+                    checked={values.recipient == key}
                     onClick={() =>
-                      setUserTransactionValues((current) => ({
+                      setValues((current) => ({
                         ...current,
                         recipient: key,
                       }))
@@ -61,9 +61,9 @@ export default function UserTransactions({
               <Input
                 placeholder="Amount"
                 type="number"
-                value={userTransactionValues.amount}
+                value={values.amount}
                 onChange={(e) =>
-                  setUserTransactionValues((current) => ({
+                  setValues((current) => ({
                     ...current,
                     amount: e.target.value,
                   }))
@@ -77,7 +77,7 @@ export default function UserTransactions({
 
             <UncontrolledDropdown>
               <DropdownToggle caret className="btn-block" color="primary">
-                {userTransactionValues.note || "Note"}
+                {values.note || "Note"}
               </DropdownToggle>
 
               <DropdownMenu>
@@ -85,7 +85,7 @@ export default function UserTransactions({
                   <DropdownItem
                     href="#pablo"
                     onClick={() =>
-                      setUserTransactionValues((current) => ({
+                      setValues((current) => ({
                         ...current,
                         note: note,
                       }))
@@ -100,12 +100,7 @@ export default function UserTransactions({
           </Col>
         </Row>
 
-        <Button
-          color="primary"
-          type="button"
-          className="my-4"
-          onClick={submitUserTransaction}
-        >
+        <Button color="primary" type="button" className="my-4" onClick={submit}>
           Submit Transaction
         </Button>
       </Form>

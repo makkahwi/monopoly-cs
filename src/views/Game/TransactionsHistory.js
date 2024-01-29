@@ -1,7 +1,7 @@
 import { Container, Table } from "reactstrap";
 
-export default function TransactionsHistory({ transactions }) {
-  const transactionsTable = [
+export default function TransactionsHistory({ data }) {
+  const tableColumns = [
     {
       key: "from",
       label: "From",
@@ -31,17 +31,17 @@ export default function TransactionsHistory({ transactions }) {
         <thead>
           <tr>
             <th>#</th>
-            {transactionsTable.map(({ label }, x) => (
+            {tableColumns.map(({ label }, x) => (
               <th key={x}>{label}</th>
             ))}
           </tr>
         </thead>
 
         <tbody>
-          {transactions.map((transaction, x) => (
+          {data.map((transaction, x) => (
             <tr key={x}>
               <td>{x + 1}</td>
-              {transactionsTable.map(({ key }, y) => (
+              {tableColumns.map(({ key }, y) => (
                 <td key={y}>{transaction[key]}</td>
               ))}
             </tr>

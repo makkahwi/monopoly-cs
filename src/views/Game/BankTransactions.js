@@ -15,9 +15,9 @@ import {
 
 export default function BankTransactions({
   players,
-  bankTransactionValues,
-  setBankTransactionValues,
-  submitBankTransaction,
+  values,
+  setValues,
+  submit,
 }) {
   const bankNotes = [
     // "Round",
@@ -61,9 +61,9 @@ export default function BankTransactions({
                   <Input
                     name="bankTransactionRecipient"
                     type="radio"
-                    checked={bankTransactionValues.recipient == key}
+                    checked={values.recipient == key}
                     onClick={() =>
-                      setBankTransactionValues((current) => ({
+                      setValues((current) => ({
                         ...current,
                         recipient: key,
                       }))
@@ -83,9 +83,9 @@ export default function BankTransactions({
               <Input
                 placeholder="Amount"
                 type="number"
-                value={bankTransactionValues.amount}
+                value={values.amount}
                 onChange={(e) =>
-                  setBankTransactionValues((current) => ({
+                  setValues((current) => ({
                     ...current,
                     amount: e.target.value,
                   }))
@@ -99,7 +99,7 @@ export default function BankTransactions({
 
             <UncontrolledDropdown>
               <DropdownToggle caret className="btn-block" color="primary">
-                {bankTransactionValues.note || "Note"}
+                {values.note || "Note"}
               </DropdownToggle>
 
               <DropdownMenu>
@@ -107,7 +107,7 @@ export default function BankTransactions({
                   <DropdownItem
                     href="#pablo"
                     onClick={() =>
-                      setBankTransactionValues((current) => ({
+                      setValues((current) => ({
                         ...current,
                         note: note,
                       }))
@@ -122,12 +122,7 @@ export default function BankTransactions({
           </Col>
         </Row>
 
-        <Button
-          color="primary"
-          type="button"
-          className="my-4"
-          onClick={submitBankTransaction}
-        >
+        <Button color="primary" type="button" className="my-4" onClick={submit}>
           Submit Transaction
         </Button>
       </Form>
