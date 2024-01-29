@@ -63,7 +63,7 @@ export default function StartPage() {
               >
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>
-                    <i className="tim-icons icon-single-02" />
+                    <i className="fas fa-person" />
                   </InputGroupText>
                 </InputGroupAddon>
 
@@ -104,7 +104,7 @@ export default function StartPage() {
               >
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>
-                    <i className="tim-icons icon-link-72" />
+                    <i className="fas fa-dice" />
                   </InputGroupText>
                 </InputGroupAddon>
 
@@ -149,7 +149,7 @@ export default function StartPage() {
               >
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>
-                    <i className="tim-icons icon-money-coins" />
+                    <i className="fas fa-money-bill" />
                   </InputGroupText>
                 </InputGroupAddon>
 
@@ -187,7 +187,7 @@ export default function StartPage() {
               >
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>
-                    <i className="tim-icons icon-coins" />
+                    <i className="fas fa-coins" />
                   </InputGroupText>
                 </InputGroupAddon>
 
