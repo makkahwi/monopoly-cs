@@ -53,22 +53,28 @@ export default function NavbarComp() {
         <Nav className="ml-auto" navbar>
           <NavItem>
             <ButtonGroup className="nav-link">
-              <a href="https://linktr.ee/makkahwi" target="_blank">
-                <Button color="info" size="sm">
-                  <p>Check Developer</p>
-                </Button>
-              </a>
-
               <Button
-                color="danger"
+                color="info"
                 size="sm"
-                onClick={() => {
-                  localStorage.removeItem("game");
-                  navigate(0);
-                }}
+                tag="a"
+                href="https://linktr.ee/makkahwi"
+                target="_blank"
               >
-                <p>Exit Game</p>
+                <p>Check Developer</p>
               </Button>
+
+              {localStorage.getItem("game") && (
+                <Button
+                  color="danger"
+                  size="sm"
+                  onClick={() => {
+                    localStorage.removeItem("game");
+                    navigate(0);
+                  }}
+                >
+                  <p>Exit Game</p>
+                </Button>
+              )}
             </ButtonGroup>
           </NavItem>
         </Nav>
