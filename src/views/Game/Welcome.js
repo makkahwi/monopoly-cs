@@ -1,6 +1,6 @@
 import { Button, ButtonGroup, Container } from "reactstrap";
 
-export default function WelcomeSection({ credit }) {
+export default function WelcomeSection({ players, credit }) {
   const code = localStorage.getItem("game");
   const name = localStorage.getItem("name");
   const url = "https://monopoly-cs.vercel.app";
@@ -38,6 +38,8 @@ export default function WelcomeSection({ credit }) {
           </Button>
         </ButtonGroup>
       </h3>
+
+      <h4>Players List: {players.map(({ name }) => name).join(", ")}</h4>
     </Container>
   );
 }

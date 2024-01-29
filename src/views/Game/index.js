@@ -34,10 +34,6 @@ export default function GamePage() {
 
   const players = [
     {
-      key: 0,
-      name: "Bank",
-    },
-    {
       key: 2,
       name: "Player X",
     },
@@ -57,7 +53,7 @@ export default function GamePage() {
 
   return (
     <Fragment>
-      <WelcomeSection credit={500} />
+      <WelcomeSection players={players} credit={500} />
 
       <UserTransactions
         players={players}
