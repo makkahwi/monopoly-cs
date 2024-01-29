@@ -1,14 +1,11 @@
-import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Col, Container, Row } from "reactstrap";
 
 export default function Error400() {
   const navigate = useNavigate();
 
-  const wrapper = useRef(null);
-
   return (
-    <div className="wrapper" ref={wrapper}>
+    <div className="wrapper">
       <Container>
         <Row>
           <Col md="12" className="text-center">
@@ -17,7 +14,7 @@ export default function Error400() {
             <h4 className="description">Ooooups! Looks like you got lost.</h4>
 
             <Button color="default" onClick={() => navigate("/")}>
-              Back To Landing
+              Back
             </Button>
           </Col>
         </Row>
