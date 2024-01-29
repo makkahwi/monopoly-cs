@@ -32,6 +32,11 @@ export default function GamePage() {
     },
   ]);
 
+  const [bankInfo, setBankInfo] = useState({
+    key: 0,
+    name: "Bank",
+  });
+
   const players = [
     {
       key: 2,
@@ -56,7 +61,7 @@ export default function GamePage() {
       <WelcomeSection players={players} credit={500} />
 
       <UserTransactions
-        players={players}
+        players={[...players, bankInfo]}
         userTransactionValues={userTransactionValues}
         setUserTransactionValues={setUserTransactionValues}
         submitUserTransaction={submitUserTransaction}
