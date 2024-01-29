@@ -1,29 +1,31 @@
-import {
-  Button,
-  ButtonGroup,
-  Container,
-  Table,
-  UncontrolledTooltip,
-} from "reactstrap";
+import { Fragment, useEffect, useState } from "react";
+import { Button, ButtonGroup, Table, UncontrolledTooltip } from "reactstrap";
 
-export default function PlayersList({ data }) {
+export default function BankRequestedTransaction() {
+  const [data, setData] = useState([]);
+
   const tableColumns = [
     {
-      key: "name",
-      label: "Name",
+      key: "to",
+      label: "To",
     },
     {
-      key: "status",
-      label: "Status",
+      key: "amount",
+      label: "Amount",
+    },
+    {
+      key: "note",
+      label: "Note",
     },
   ];
 
+  useEffect(() => {
+    setData([{ to: "Player X", amount: "100", note: "Round" }]);
+  }, []);
+
   return (
-    <Container
-      className="rounded-lg p-5 my-5"
-      style={{ backgroundColor: "rgba(0,0,0,0.35)" }}
-    >
-      <h2 className="title">Players List</h2>
+    <Fragment>
+      <h3 className="title">Requested Transaction</h3>
 
       <Table responsive>
         <thead>
@@ -51,28 +53,28 @@ export default function PlayersList({ data }) {
                 <ButtonGroup>
                   <Button
                     className="btn-icon"
-                    color="warning"
+                    color="success"
                     size="sm"
-                    id="lost"
+                    id="approve"
                   >
-                    <i className="fas fa-heart-crack" />
+                    <i className="fas fa-check" />
                   </Button>
 
-                  <UncontrolledTooltip delay={0} target="lost">
-                    Lost
+                  <UncontrolledTooltip delay={0} target="approve">
+                    Approve
                   </UncontrolledTooltip>
 
                   <Button
                     className="btn-icon"
                     color="danger"
                     size="sm"
-                    id="delete"
+                    id="decline"
                   >
-                    <i className="fas fa-trash" />
+                    <i className="fas fa-xmark" />
                   </Button>
 
-                  <UncontrolledTooltip delay={0} target="delete">
-                    Delete
+                  <UncontrolledTooltip delay={0} target="decline">
+                    Decline
                   </UncontrolledTooltip>
                 </ButtonGroup>
               </td>
@@ -80,6 +82,6 @@ export default function PlayersList({ data }) {
           ))}
         </tbody>
       </Table>
-    </Container>
+    </Fragment>
   );
 }
