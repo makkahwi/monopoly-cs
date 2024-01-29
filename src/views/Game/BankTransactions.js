@@ -19,25 +19,20 @@ export default function BankTransactions({
   setValues,
   submit,
 }) {
-  const bankNotes = [
-    // "Round",
-    "Chance / X",
-    "Refund",
-    "Mortgage",
-  ];
+  const bankNotes = ["Chance / X", "Mortgage"];
 
   return (
     <Container
       className="rounded-lg p-5 my-5"
       style={{ backgroundColor: "rgba(0,0,0,0.35)" }}
     >
-      <h2 className="title">Send Credit To User From Bank</h2>
+      <h2 className="title">Send Credit From Bank To User</h2>
 
       <h3 className="title">Quick Transactions</h3>
 
       <Row>
         <Col xs="12">
-          <h4>Round Transaction of 200</h4>
+          <Label>Round Transaction of 200</Label>
         </Col>
 
         {players.map(({ key, name }, x) => (
@@ -53,7 +48,7 @@ export default function BankTransactions({
       <Form>
         <Row>
           <Col md="4" xs="6">
-            <p className="category">Recipient</p>
+            <Label>Recipient</Label>
 
             {players.map(({ key, name }, x) => (
               <FormGroup check className="form-check-radio" key={x}>
@@ -77,7 +72,7 @@ export default function BankTransactions({
           </Col>
 
           <Col md="4" xs="6">
-            <p className="category">Amount</p>
+            <Label>Amount</Label>
 
             <FormGroup>
               <Input
@@ -95,7 +90,7 @@ export default function BankTransactions({
           </Col>
 
           <Col md="4">
-            <p className="category">Note</p>
+            <Label>Note</Label>
 
             <UncontrolledDropdown>
               <DropdownToggle caret className="btn-block" color="primary">
@@ -105,7 +100,6 @@ export default function BankTransactions({
               <DropdownMenu>
                 {bankNotes.map((note, x) => (
                   <DropdownItem
-                    href="#pablo"
                     onClick={() =>
                       setValues((current) => ({
                         ...current,

@@ -31,7 +31,7 @@ export default function UserTransactions({
       <Form>
         <Row>
           <Col md="4" xs="6">
-            <p className="category">Recipient</p>
+            <Label>Recipient</Label>
 
             {players.map(({ key, name }, x) => (
               <FormGroup check className="form-check-radio" key={x}>
@@ -55,7 +55,7 @@ export default function UserTransactions({
           </Col>
 
           <Col md="4" xs="6">
-            <p className="category">Amount</p>
+            <Label>Amount</Label>
 
             <FormGroup>
               <Input
@@ -73,7 +73,7 @@ export default function UserTransactions({
           </Col>
 
           <Col md="4">
-            <p className="category">Note</p>
+            <Label>Note</Label>
 
             <UncontrolledDropdown>
               <DropdownToggle caret className="btn-block" color="primary">
@@ -83,7 +83,6 @@ export default function UserTransactions({
               <DropdownMenu>
                 {userNotes.map((note, x) => (
                   <DropdownItem
-                    href="#pablo"
                     onClick={() =>
                       setValues((current) => ({
                         ...current,

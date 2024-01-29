@@ -26,7 +26,7 @@ export default function BankTransactionRequest({ values, setValues, submit }) {
       <Form>
         <Row>
           <Col md="4" xs="6">
-            <p className="category">Amount</p>
+            <Label>Amount</Label>
 
             <FormGroup>
               <Input
@@ -44,7 +44,7 @@ export default function BankTransactionRequest({ values, setValues, submit }) {
           </Col>
 
           <Col md="4">
-            <p className="category">Note</p>
+            <Label>Note</Label>
 
             <UncontrolledDropdown>
               <DropdownToggle caret className="btn-block" color="primary">
@@ -54,7 +54,6 @@ export default function BankTransactionRequest({ values, setValues, submit }) {
               <DropdownMenu>
                 {bankNotes.map((note, x) => (
                   <DropdownItem
-                    href="#pablo"
                     onClick={() =>
                       setValues((current) => ({
                         ...current,

@@ -231,7 +231,6 @@ export default function StartPage() {
                   <h6>
                     <a
                       className="link footer-link"
-                      href="#pablo"
                       onClick={(e) => e.preventDefault()}
                     >
                       Need Help?
