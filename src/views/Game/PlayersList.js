@@ -1,4 +1,10 @@
-import { Button, ButtonGroup, Container, Table } from "reactstrap";
+import {
+  Button,
+  ButtonGroup,
+  Container,
+  Table,
+  UncontrolledTooltip,
+} from "reactstrap";
 
 export default function PlayersList({ data }) {
   const tableColumns = [
@@ -39,13 +45,31 @@ export default function PlayersList({ data }) {
               ))}
               <td>
                 <ButtonGroup>
-                  <Button className="btn-icon" color="warning" size="sm">
+                  <Button
+                    className="btn-icon"
+                    color="warning"
+                    size="sm"
+                    id="lost"
+                  >
                     <i className="fas fa-heart-crack" />
                   </Button>
 
-                  <Button className="btn-icon" color="danger" size="sm">
+                  <UncontrolledTooltip delay={0} target="lost">
+                    Lost
+                  </UncontrolledTooltip>
+
+                  <Button
+                    className="btn-icon"
+                    color="danger"
+                    size="sm"
+                    id="delete"
+                  >
                     <i className="fas fa-trash" />
                   </Button>
+
+                  <UncontrolledTooltip delay={0} target="delete">
+                    Delete
+                  </UncontrolledTooltip>
                 </ButtonGroup>
               </td>
             </tr>
