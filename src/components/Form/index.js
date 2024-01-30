@@ -1,7 +1,6 @@
 import classnames from "classnames";
 import { useFormik } from "formik";
 import { useState } from "react";
-import Select from "react-select";
 import {
   Button,
   Col,
@@ -129,7 +128,7 @@ export default function FormRenderer({
                   )}
 
                   <Input
-                    className={classnames("input-lg w-100", {
+                    className={classnames("input-lg", {
                       "input-group-focus": focuses.playerName,
                       "form-control-danger":
                         formik.errors[name] && formik.touched[name],
