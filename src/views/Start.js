@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Card, CardBody, CardHeader, Col, Container, Row } from "reactstrap";
+import * as API from "../api/apis";
 
 import FormRenderer from "components/Form";
 
@@ -8,17 +9,19 @@ export default function StartPage() {
   const queryParameters = new URLSearchParams(window.location.search);
 
   const joinGame = (values) => {
-    console.log("Joining a game", values);
-    localStorage.setItem("game", values.code);
-    localStorage.setItem("name", values.name);
-    navigate(0);
+    API.joinGame(values).then((res) => {
+      localStorage.setItem("game", res.game);
+      localStorage.setItem("name", res.name);
+      navigate(0);
+    });
   };
 
   const startGame = (values) => {
-    console.log("Starting a game", values);
-    localStorage.setItem("game", values.code);
-    localStorage.setItem("name", values.name);
-    navigate(0);
+    API.createGame(values).then((res) => {
+      localStorage.setItem("game", res.game);
+      localStorage.setItem("name", res.name);
+      navigate(0);
+    });
   };
 
   return (

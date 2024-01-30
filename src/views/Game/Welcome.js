@@ -1,9 +1,10 @@
 import { Button, ButtonGroup, Container } from "reactstrap";
+import classnames from "classnames";
 
 export default function WelcomeSection({ players, credit }) {
   const code = localStorage.getItem("game");
   const name = localStorage.getItem("name");
-  const url = "https://monopoly-cs.vercel.app";
+  const url = window.location.href;
 
   return (
     <Container className="p-5 my-5">
@@ -41,7 +42,20 @@ export default function WelcomeSection({ players, credit }) {
         </ButtonGroup>
       </h3>
 
-      <h4>Players List: {players.map(({ name }) => name).join(", ")}</h4>
+      <h4>
+        Players List:{" "}
+        {players.map(({ name, status }, i) => (
+          <span
+            className={classnames("mr-3", {
+              "text-success": status == "Active",
+              "text-danger": status != "Active",
+            })}
+            key={i}
+          >
+            {name}
+          </span>
+        ))}
+      </h4>
     </Container>
   );
 }

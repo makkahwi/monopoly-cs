@@ -1,9 +1,14 @@
 import { Fragment } from "react";
 
 import FormRenderer from "components/Form";
+import * as API from "../../api/apis";
 
 export default function BankCustomTransactions({ players }) {
   const notes = ["Chance / X", "Mortgage"];
+
+  const onSubmit = (values) => {
+    API.addCredit(values);
+  };
 
   return (
     <Fragment>
@@ -11,7 +16,7 @@ export default function BankCustomTransactions({ players }) {
 
       <FormRenderer
         submitLabel="Submit Transaction"
-        onSubmit={(values) => console.log({ values })}
+        onSubmit={onSubmit}
         inputs={[
           {
             label: "Recipient",

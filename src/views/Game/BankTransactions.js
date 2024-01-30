@@ -4,9 +4,7 @@ import BankCustomTransactions from "./BankCustomTransactions";
 import BankQuickTransactions from "./BankQuickTransactions";
 import BankRequestedTransaction from "./BankRequestedTransaction";
 
-export default function BankTransactions({
-  players,
-}) {
+export default function BankTransactions({ players }) {
   return (
     <Container
       className="rounded-lg p-5 my-5"
@@ -18,9 +16,7 @@ export default function BankTransactions({
 
       <BankRequestedTransaction />
 
-      <BankCustomTransactions
-        players={players}
-      />
+      <BankCustomTransactions players={players} />
     </Container>
   );
 }

@@ -6,50 +6,15 @@ import PlayersList from "./PlayersList";
 import TransactionsHistory from "./TransactionsHistory";
 import UserTransactions from "./UserTransactions";
 import WelcomeSection from "./Welcome";
+import * as API from "../../api/apis";
 
 export default function GamePage() {
-  const [transactionsData, setTransactionsData] = useState([]);
   const [bankInfo, setBankInfo] = useState({});
   const [players, setPlayers] = useState([]);
 
   useEffect(() => {
-    setTransactionsData([
-      {
-        from: "X",
-        to: "Y",
-        amount: 10,
-        note: "Rent",
-      },
-      {
-        from: "X",
-        to: "Bank",
-        amount: 150,
-        note: "Buy",
-      },
-    ]);
-
-    setBankInfo({
-      key: 0,
-      name: "Bank",
-    });
-
-    setPlayers([
-      {
-        key: 2,
-        name: "Player X",
-        status: "Active",
-      },
-      {
-        key: 3,
-        name: "Player Y",
-        status: "Lost",
-      },
-      {
-        key: 4,
-        name: "Player Z",
-        status: "Active",
-      },
-    ]);
+    API.getBankInfo().then((res) => setBankInfo(res));
+    API.getPlayers().then((res) => setPlayers(res));
   }, []);
 
   return (
@@ -69,7 +34,7 @@ export default function GamePage() {
         players={players.filter(({ status }) => status == "Active")}
       />
 
-      <TransactionsHistory data={transactionsData} />
+      <TransactionsHistory />
 
       <PlayersList data={players} />
     </Fragment>

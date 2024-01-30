@@ -1,9 +1,14 @@
 import { Container } from "reactstrap";
 
 import FormRenderer from "components/Form";
+import * as API from "../../api/apis";
 
 export default function UserTransactions({ players }) {
   const notes = ["Rent", "Buy", "Chance / X", "Tax"];
+
+  const onSubmit = (values) => {
+    API.sendCredit(values);
+  };
 
   return (
     <Container
@@ -14,7 +19,7 @@ export default function UserTransactions({ players }) {
 
       <FormRenderer
         submitLabel="Submit Transaction"
-        onSubmit={(values) => console.log({ values })}
+        onSubmit={onSubmit}
         inputs={[
           {
             label: "Recipient",

@@ -1,9 +1,14 @@
 import { Container } from "reactstrap";
 
 import FormRenderer from "components/Form";
+import * as API from "../../api/apis";
 
 export default function BankTransactionRequest() {
   const notes = ["Round", "Chance / X", "Mortgage"];
+
+  const onSubmit = (values) => {
+    API.requestFromBank(values);
+  };
 
   return (
     <Container
@@ -14,7 +19,7 @@ export default function BankTransactionRequest() {
 
       <FormRenderer
         submitLabel="Submit Request"
-        onSubmit={(values) => console.log({ values })}
+        onSubmit={onSubmit}
         inputs={[
           {
             label: "Amount",
