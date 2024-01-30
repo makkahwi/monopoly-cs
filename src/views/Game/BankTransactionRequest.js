@@ -36,7 +36,8 @@ export default function BankTransactionRequest() {
               value: name,
               label: name,
             })),
-            required: false,
+            haveOtherOption: true,
+            required: true,
           },
         ]}
       />

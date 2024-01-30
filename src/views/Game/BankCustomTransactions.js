@@ -43,7 +43,8 @@ export default function BankCustomTransactions({ players }) {
               value: name,
               label: name,
             })),
-            required: false,
+            haveOtherOption: true,
+            required: true,
           },
         ]}
       />

@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import {
   Button,
   Col,
@@ -72,6 +72,7 @@ export default function FormRenderer({
               fullWidth,
               double,
               options,
+              haveOtherOption,
               ...rest
             },
             i
@@ -83,27 +84,57 @@ export default function FormRenderer({
               </Label>
 
               {type === "select" ? (
-                options.map(({ label, value }, y) => (
-                  <FormGroup check className="form-check-radio mr-3" key={y}>
-                    <Label check>
-                      <Input
-                        className={classnames("input-lg w-100", {
-                          "input-group-focus": focuses.playerName,
-                          "form-control-danger":
-                            formik.errors[name] && formik.touched[name],
-                        })}
-                        placeholder={placeholder || label + "..."}
-                        name={name}
-                        {...rest}
-                        type="radio"
-                        checked={formik.values[name] == value}
-                        onClick={() => formik.setFieldValue(name, value)}
-                      />
-                      <span className="form-check-sign" />
-                      {label}
-                    </Label>
-                  </FormGroup>
-                ))
+                <Fragment>
+                  {options.map(({ label, value }, y) => (
+                    <FormGroup check className="form-check-radio mr-3" key={y}>
+                      <Label check>
+                        <Input
+                          {...rest}
+                          className={classnames("input-lg w-100", {
+                            "input-group-focus": focuses[name],
+                            "form-control-danger":
+                              formik.errors[name] && formik.touched[name],
+                          })}
+                          placeholder={placeholder || label + "..."}
+                          name={name}
+                          type="radio"
+                          checked={formik.values[name] == value}
+                          onClick={() => formik.setFieldValue(name, value)}
+                        />
+                        <span className="form-check-sign" />
+                        {label}
+                      </Label>
+                    </FormGroup>
+                  ))}
+
+                  {haveOtherOption && (
+                    <FormGroup check className="form-check-radio mr-3">
+                      <Label check>
+                        <Input
+                          {...rest}
+                          className={classnames("input-lg w-100", {
+                            "input-group-focus": focuses[name],
+                            "form-control-danger":
+                              formik.errors[name] && formik.touched[name],
+                          })}
+                          placeholder={placeholder || label + "..."}
+                          name={name}
+                          // checked={
+                          //   formik.values[name] == "X"
+                          //   // options
+                          //   // .map(({ value }) => value)
+                          //   // .includes(formik.values[name])
+                          // }
+                          value={formik.values[name]}
+                          onChange={(e) =>
+                            formik.setFieldValue(name, e.target.value)
+                          }
+                        />
+                        <span className="form-check-sign" />
+                      </Label>
+                    </FormGroup>
+                  )}
+                </Fragment>
               ) : (
                 <InputGroup
                   onFocus={(e) =>
@@ -128,6 +159,7 @@ export default function FormRenderer({
                   )}
 
                   <Input
+                    {...rest}
                     className={classnames("input-lg", {
                       "input-group-focus": focuses.playerName,
                       "form-control-danger":
@@ -138,7 +170,6 @@ export default function FormRenderer({
                     name={name}
                     value={formik.values[name]}
                     onChange={formik.handleChange}
-                    {...rest}
                   />
                 </InputGroup>
               )}

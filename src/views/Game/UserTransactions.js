@@ -46,7 +46,8 @@ export default function UserTransactions({ players }) {
               value: name,
               label: name,
             })),
-            required: false,
+            haveOtherOption: true,
+            required: true,
           },
         ]}
       />
