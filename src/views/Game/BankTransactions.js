@@ -1,13 +1,11 @@
 import { Container } from "reactstrap";
+
 import BankCustomTransactions from "./BankCustomTransactions";
 import BankQuickTransactions from "./BankQuickTransactions";
 import BankRequestedTransaction from "./BankRequestedTransaction";
 
 export default function BankTransactions({
   players,
-  values,
-  setValues,
-  submit,
 }) {
   return (
     <Container
@@ -22,9 +20,6 @@ export default function BankTransactions({
 
       <BankCustomTransactions
         players={players}
-        values={values}
-        setValues={setValues}
-        submit={submit}
       />
     </Container>
   );

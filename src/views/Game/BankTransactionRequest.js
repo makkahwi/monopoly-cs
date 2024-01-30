@@ -1,20 +1,9 @@
-import {
-  Button,
-  Col,
-  Container,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  Row,
-  UncontrolledDropdown,
-} from "reactstrap";
+import { Container } from "reactstrap";
 
-export default function BankTransactionRequest({ values, setValues, submit }) {
-  const bankNotes = ["Round", "Chance / X", "Mortgage"];
+import FormRenderer from "components/Form";
+
+export default function BankTransactionRequest() {
+  const notes = ["Round", "Chance / X", "Mortgage"];
 
   return (
     <Container
@@ -23,57 +12,29 @@ export default function BankTransactionRequest({ values, setValues, submit }) {
     >
       <h2 className="title">Request Credit From Bank</h2>
 
-      <Form>
-        <Row>
-          <Col md="4" xs="6">
-            <Label>Amount</Label>
-
-            <FormGroup>
-              <Input
-                placeholder="Amount"
-                type="number"
-                value={values.amount}
-                onChange={(e) =>
-                  setValues((current) => ({
-                    ...current,
-                    amount: e.target.value,
-                  }))
-                }
-              />
-            </FormGroup>
-          </Col>
-
-          <Col md="4">
-            <Label>Note</Label>
-
-            <UncontrolledDropdown>
-              <DropdownToggle caret className="btn-block" color="info">
-                {values.note || "Note"}
-              </DropdownToggle>
-
-              <DropdownMenu>
-                {bankNotes.map((note, x) => (
-                  <DropdownItem
-                    onClick={() =>
-                      setValues((current) => ({
-                        ...current,
-                        note: note,
-                      }))
-                    }
-                    key={x}
-                  >
-                    {note}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </UncontrolledDropdown>
-          </Col>
-        </Row>
-
-        <Button color="info" type="button" className="my-4" onClick={submit}>
-          Submit Request
-        </Button>
-      </Form>
+      <FormRenderer
+        submitLabel="Submit Request"
+        onSubmit={(values) => console.log({ values })}
+        inputs={[
+          {
+            label: "Amount",
+            name: "amount",
+            type: "number",
+            min: 0,
+            required: true,
+          },
+          {
+            label: "Note",
+            name: "note",
+            type: "select",
+            options: notes.map((name) => ({
+              value: name,
+              label: name,
+            })),
+            required: false,
+          },
+        ]}
+      />
     </Container>
   );
 }

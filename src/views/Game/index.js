@@ -1,44 +1,16 @@
 import { Fragment, useEffect, useState } from "react";
+
+import BankTransactionRequest from "./BankTransactionRequest";
 import BankTransactions from "./BankTransactions";
+import PlayersList from "./PlayersList";
 import TransactionsHistory from "./TransactionsHistory";
 import UserTransactions from "./UserTransactions";
 import WelcomeSection from "./Welcome";
-import BankTransactionRequest from "./BankTransactionRequest";
-import PlayersList from "./PlayersList";
 
 export default function GamePage() {
-  const initialTransactionValues = {
-    recipient: "",
-    amount: 0,
-    note: "",
-  };
-
-  const [userTransactionValues, setUserTransactionValues] = useState(
-    initialTransactionValues
-  );
-  const [bankTransactionRequestValues, setBankTransactionRequestValues] =
-    useState(initialTransactionValues);
-  const [bankTransactionValues, setBankTransactionValues] = useState(
-    initialTransactionValues
-  );
   const [transactionsData, setTransactionsData] = useState([]);
   const [bankInfo, setBankInfo] = useState({});
   const [players, setPlayers] = useState([]);
-
-  const submitUserTransaction = () => {
-    console.log({ userTransactionValues });
-    setUserTransactionValues(initialTransactionValues);
-  };
-
-  const submitBankTransactionRequest = () => {
-    console.log({ bankTransactionRequestValues });
-    setBankTransactionRequestValues(initialTransactionValues);
-  };
-
-  const submitBankTransaction = () => {
-    console.log({ bankTransactionValues });
-    setBankTransactionValues(initialTransactionValues);
-  };
 
   useEffect(() => {
     setTransactionsData([
@@ -89,22 +61,12 @@ export default function GamePage() {
           ...players.filter(({ status }) => status == "Active"),
           bankInfo,
         ]}
-        values={userTransactionValues}
-        setValues={setUserTransactionValues}
-        submit={submitUserTransaction}
       />
 
-      <BankTransactionRequest
-        values={bankTransactionRequestValues}
-        setValues={setBankTransactionRequestValues}
-        submit={submitBankTransactionRequest}
-      />
+      <BankTransactionRequest />
 
       <BankTransactions
         players={players.filter(({ status }) => status == "Active")}
-        values={bankTransactionValues}
-        setValues={setBankTransactionValues}
-        submit={submitBankTransaction}
       />
 
       <TransactionsHistory data={transactionsData} />
