@@ -2,5 +2,4 @@
 
 ## ToDo List
 
-- Formik
 - Build APIs Simulation
