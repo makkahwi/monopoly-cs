@@ -1,7 +1,10 @@
 import { Button, ButtonGroup, Container } from "reactstrap";
 import classnames from "classnames";
+import { useNavigate } from "react-router-dom";
 
 export default function WelcomeSection({ players, credit }) {
+  const navigate = useNavigate();
+
   const code = localStorage.getItem("game");
   const name = localStorage.getItem("name");
   const url = window.location.href;
@@ -56,6 +59,19 @@ export default function WelcomeSection({ players, credit }) {
           </span>
         ))}
       </h4>
+
+      {localStorage.getItem("game") && (
+        <Button
+          color="danger"
+          size="sm"
+          onClick={() => {
+            localStorage.removeItem("game");
+            navigate(0);
+          }}
+        >
+          Exit Game
+        </Button>
+      )}
     </Container>
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Button,
   ButtonGroup,
@@ -12,8 +12,6 @@ import {
 } from "reactstrap";
 
 export default function NavbarComp() {
-  const navigate = useNavigate();
-
   const [navbarColor, setNavbarColor] = useState("navbar-transparent");
 
   useEffect(() => {
@@ -62,19 +60,6 @@ export default function NavbarComp() {
               >
                 <p>Check Developer</p>
               </Button>
-
-              {localStorage.getItem("game") && (
-                <Button
-                  color="danger"
-                  size="sm"
-                  onClick={() => {
-                    localStorage.removeItem("game");
-                    navigate(0);
-                  }}
-                >
-                  <p>Exit Game</p>
-                </Button>
-              )}
             </ButtonGroup>
           </NavItem>
         </Nav>
