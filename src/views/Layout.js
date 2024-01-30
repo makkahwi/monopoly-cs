@@ -3,12 +3,19 @@ import "assets/css/nucleo-icons.css";
 import "assets/demo/demo.css";
 import "assets/demo/react-demo.css";
 import "assets/scss/blk-design-system-pro-react.scss?v1.2.0";
-import Footer from "components/Footer";
 import Navbar from "components/Navbar";
+import { Fragment } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Error404 from "views/Error404";
 import GamePage from "views/Game";
 import StartPage from "views/Start";
+import BankTransactionRequest from "./Game/BankTransactionRequest";
+import BankTransactions from "./Game/BankTransactions";
+import PlayersList from "./Game/PlayersList";
+import TransactionsHistory from "./Game/TransactionsHistory";
+import UserTransactions from "./Game/UserTransactions";
+import WelcomeSection from "./Game/Welcome";
+import AppInfo from "./Game/AppInfo";
 
 export default function Layout() {
   return (
@@ -36,14 +43,32 @@ export default function Layout() {
 
         <Routes>
           {localStorage.getItem("game")?.length ? (
-            <Route path="/" element={<GamePage />} />
+            <Fragment>
+              <Route path="/" element={<WelcomeSection players={[]} />} />
+              <Route
+                path="/send-credit"
+                element={<UserTransactions players={[]} />}
+              />
+              <Route
+                path="/request-from-bank"
+                element={<BankTransactionRequest />}
+              />
+              <Route
+                path="/bank-transactions"
+                element={<BankTransactions players={[]} />}
+              />
+              <Route
+                path="/transactions-history"
+                element={<TransactionsHistory />}
+              />
+              <Route path="/players-list" element={<PlayersList data={[]} />} />
+              <Route path="/app-info" element={<AppInfo />} />
+            </Fragment>
           ) : (
             <Route path="/" element={<StartPage />} />
           )}
           <Route path="*" element={<Error404 />} />
         </Routes>
-
-        <Footer />
       </div>
     </BrowserRouter>
   );

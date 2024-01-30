@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Button,
   ButtonGroup,
@@ -12,6 +12,8 @@ import {
 } from "reactstrap";
 
 export default function NavbarComp() {
+  const navigate = useNavigate();
+
   const [navbarColor, setNavbarColor] = useState("navbar-transparent");
 
   useEffect(() => {
@@ -35,6 +37,32 @@ export default function NavbarComp() {
     }
   };
 
+  const links = [
+    { icon: "fas fa-user", link: "/", label: "Profile" },
+    {
+      icon: "fas fa-right-from-bracket",
+      link: "/send-credit",
+      label: "Send Credit",
+    },
+    {
+      icon: "fas fa-right-to-bracket",
+      link: "/request-from-bank",
+      label: "Request From Bank",
+    },
+    {
+      icon: "fas fa-piggy-bank",
+      link: "/bank-transactions",
+      label: "Bank Transactions",
+    },
+    {
+      icon: "fas fa-clock-rotate-left",
+      link: "/transactions-history",
+      label: "Transactions History",
+    },
+    { icon: "fas fa-users", link: "/players-list", label: "Players List" },
+    { icon: "fas fa-info", link: "/app-info", label: "App Info" },
+  ];
+
   return (
     <Navbar className={"fixed-top " + navbarColor} expand="lg">
       <Container>
@@ -49,19 +77,11 @@ export default function NavbarComp() {
         </div>
 
         <Nav className="ml-auto" navbar>
-          <NavItem>
-            <ButtonGroup className="nav-link">
-              <Button
-                color="info"
-                size="sm"
-                tag="a"
-                href="https://linktr.ee/makkahwi"
-                target="_blank"
-              >
-                <p>Check Developer</p>
-              </Button>
-            </ButtonGroup>
-          </NavItem>
+          {links.map(({ link, label }, i) => (
+            <NavItem role="button" onClick={() => navigate(link)} key={i}>
+              <p>{label}</p>
+            </NavItem>
+          ))}
         </Nav>
       </Container>
     </Navbar>
