@@ -13,4 +13,4 @@ const service = axios.create({
 
 export default service;
 
-export const demo = false;
+export const demoStatus = true;
