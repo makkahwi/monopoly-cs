@@ -46,7 +46,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="footer">
+    <footer className="py-3" style={{ backgroundColor: "rgba(0,0,0,0.35)" }}>
       <Container>
         <Row>
           <Col md="6">

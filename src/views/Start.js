@@ -1,243 +1,114 @@
-import classnames from "classnames";
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  CardTitle,
-  Col,
-  Container,
-  Form,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Label,
-} from "reactstrap";
+import { useNavigate } from "react-router-dom";
+import { Card, CardBody, CardHeader, Col, Container, Row } from "reactstrap";
+import * as API from "../api/apis";
+
+import FormRenderer from "components/Form";
 
 export default function StartPage() {
   const navigate = useNavigate();
   const queryParameters = new URLSearchParams(window.location.search);
 
-  const [focuses, setFocuses] = useState({});
-  const [values, setValues] = useState({
-    playerName: localStorage.getItem("name") || "",
-    gameCode: queryParameters.get("code") || "",
-    initialCredit: 1000,
-    roundBonus: 200,
-  });
-
-  const joinGame = (e) => {
-    e.preventDefault();
-    console.log("Joining a game");
-    localStorage.setItem("game", "MYR123");
-    localStorage.setItem("name", "Suhaib");
-    navigate(0);
+  const joinGame = (values) => {
+    API.joinGame(values).then((res) => {
+      localStorage.setItem("game", res.game);
+      localStorage.setItem("name", res.name);
+      navigate(0);
+    });
   };
 
-  const startGame = (e) => {
-    e.preventDefault();
-    console.log("Starting a game");
-    localStorage.setItem("game", "SAR321");
-    localStorage.setItem("name", "Suhaib");
-    navigate(0);
+  const startGame = (values) => {
+    API.createGame(values).then((res) => {
+      localStorage.setItem("game", res.game);
+      localStorage.setItem("name", res.name);
+      navigate(0);
+    });
   };
 
   return (
     <Container>
-      <Col className="mx-auto" lg="5" md="8">
+      <Col className="mx-auto my-5" lg="7" md="8">
         <Card className="card-login">
-          <Form action="" className="form" method="">
-            <CardHeader className="p-0 m-0">
-              <h1 className="px-3 pt-5">Start</h1>
-            </CardHeader>
+          <CardHeader className="p-0 m-0">
+            <h1 className="px-3 pt-5">Start</h1>
+          </CardHeader>
 
-            <CardBody>
-              <Label>Your Name</Label>
-              <InputGroup
-                className={classnames("input-lg", {
-                  "input-group-focus": focuses.playerName,
-                })}
-              >
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText>
-                    <i className="fas fa-person" />
-                  </InputGroupText>
-                </InputGroupAddon>
+          <Row>
+            <Col md={6}>
+              <CardHeader className="p-0 m-0">
+                <h4 className="px-3">Join a Game</h4>
+              </CardHeader>
 
-                <Input
-                  placeholder="Your Name..."
-                  type="text"
-                  value={values.playerName}
-                  onChange={(e) =>
-                    setValues((current) => ({
-                      ...current,
-                      playerName: e.target.value,
-                    }))
-                  }
-                  onFocus={(e) =>
-                    setFocuses((current) => ({
-                      ...current,
-                      playerName: true,
-                    }))
-                  }
-                  onBlur={(e) =>
-                    setFocuses((current) => ({
-                      ...current,
-                      playerName: false,
-                    }))
-                  }
+              <CardBody>
+                <FormRenderer
+                  onSubmit={joinGame}
+                  submitLabel="Join"
+                  fullWidthSubmit
+                  inputs={[
+                    {
+                      icon: "fas fa-person",
+                      label: "Your Name",
+                      name: "name",
+                      defaultValue: localStorage.getItem("name") || "",
+                      required: true,
+                      fullWidth: true,
+                    },
+                    {
+                      icon: "fas fa-dice",
+                      label: "Joining Code",
+                      name: "code",
+                      defaultValue: queryParameters.get("code") || "",
+                      required: true,
+                      fullWidth: true,
+                    },
+                  ]}
                 />
-              </InputGroup>
-            </CardBody>
+              </CardBody>
+            </Col>
 
-            <CardBody>
-              <CardTitle tag="h4">Join a Game</CardTitle>
+            <Col md={6}>
+              <CardHeader className="p-0 m-0">
+                <h4 className="px-3">Start a New Game</h4>
+              </CardHeader>
 
-              <Label>Joining Code</Label>
-              <InputGroup
-                className={classnames("input-lg", {
-                  "input-group-focus": focuses.gameCode,
-                })}
-              >
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText>
-                    <i className="fas fa-dice" />
-                  </InputGroupText>
-                </InputGroupAddon>
-
-                <Input
-                  placeholder="Joining Code..."
-                  type="text"
-                  value={values.gameCode}
-                  onChange={(e) =>
-                    setValues((current) => ({
-                      ...current,
-                      gameCode: e.target.value,
-                    }))
-                  }
-                  onFocus={(e) =>
-                    setFocuses((current) => ({ ...current, gameCode: true }))
-                  }
-                  onBlur={(e) =>
-                    setFocuses((current) => ({ ...current, gameCode: false }))
-                  }
+              <CardBody>
+                <FormRenderer
+                  onSubmit={startGame}
+                  submitLabel="Start"
+                  fullWidthSubmit
+                  inputs={[
+                    {
+                      icon: "fas fa-person",
+                      label: "Your Name",
+                      name: "name",
+                      defaultValue: localStorage.getItem("name") || "",
+                      required: true,
+                      fullWidth: true,
+                    },
+                    {
+                      icon: "fas fa-money-bill",
+                      label: "Initial Credit For Players",
+                      name: "initialCredit",
+                      type: "number",
+                      defaultValue: 1000,
+                      min: 0,
+                      required: true,
+                      fullWidth: true,
+                    },
+                    {
+                      icon: "fas fa-coins",
+                      label: "Bonus of Passing 'Start Point'",
+                      name: "roundBonus",
+                      type: "number",
+                      defaultValue: 200,
+                      min: 0,
+                      required: true,
+                      fullWidth: true,
+                    },
+                  ]}
                 />
-              </InputGroup>
-
-              <Button
-                block
-                className="btn-round"
-                color="info"
-                onClick={joinGame}
-              >
-                Join
-              </Button>
-            </CardBody>
-
-            <CardBody>
-              <CardTitle tag="h4">Start a New Game</CardTitle>
-
-              <Label>Initial Credit For Players</Label>
-
-              <InputGroup
-                className={classnames("input-lg", {
-                  "input-group-focus": focuses.initialCredit,
-                })}
-              >
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText>
-                    <i className="fas fa-money-bill" />
-                  </InputGroupText>
-                </InputGroupAddon>
-
-                <Input
-                  placeholder="Initial Credit For Players..."
-                  type="number"
-                  min={0}
-                  value={values.initialCredit}
-                  onChange={(e) =>
-                    setValues((current) => ({
-                      ...current,
-                      initialCredit: e.target.value,
-                    }))
-                  }
-                  onFocus={(e) =>
-                    setFocuses((current) => ({
-                      ...current,
-                      initialCredit: true,
-                    }))
-                  }
-                  onBlur={(e) =>
-                    setFocuses((current) => ({
-                      ...current,
-                      initialCredit: false,
-                    }))
-                  }
-                />
-              </InputGroup>
-
-              <Label>Bonus of Passing "Start Point"</Label>
-              <InputGroup
-                className={classnames("input-lg", {
-                  "input-group-focus": focuses.roundBonus,
-                })}
-              >
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText>
-                    <i className="fas fa-coins" />
-                  </InputGroupText>
-                </InputGroupAddon>
-
-                <Input
-                  placeholder="Bonus of Passing 'Start Point'..."
-                  type="number"
-                  min={0}
-                  value={values.roundBonus}
-                  onChange={(e) =>
-                    setValues((current) => ({
-                      ...current,
-                      roundBonus: e.target.value,
-                    }))
-                  }
-                  onFocus={(e) =>
-                    setFocuses((current) => ({
-                      ...current,
-                      roundBonus: true,
-                    }))
-                  }
-                  onBlur={(e) =>
-                    setFocuses((current) => ({
-                      ...current,
-                      roundBonus: false,
-                    }))
-                  }
-                />
-              </InputGroup>
-
-              <Button
-                block
-                className="btn-round"
-                color="info"
-                onClick={startGame}
-              >
-                Start
-              </Button>
-            </CardBody>
-
-            {/* <div className="pull-right mr-3 mb-3">
-                  <h6>
-                    <a
-                      className="link footer-link"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      Need Help?
-                    </a>
-                  </h6>
-                </div> */}
-          </Form>
+              </CardBody>
+            </Col>
+          </Row>
         </Card>
       </Col>
     </Container>

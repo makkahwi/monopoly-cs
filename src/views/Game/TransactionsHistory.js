@@ -1,6 +1,10 @@
+import { useEffect, useState } from "react";
 import { Container, Table } from "reactstrap";
+import * as API from "../../api/apis";
 
-export default function TransactionsHistory({ data }) {
+export default function TransactionsHistory() {
+  const [data, setData] = useState([]);
+
   const tableColumns = [
     {
       key: "from",
@@ -19,6 +23,10 @@ export default function TransactionsHistory({ data }) {
       label: "Note",
     },
   ];
+
+  useEffect(() => {
+    API.getTransactions().then((res) => setData(res));
+  }, []);
 
   return (
     <Container

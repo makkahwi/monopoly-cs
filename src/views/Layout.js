@@ -13,9 +13,9 @@ import StartPage from "views/Start";
 export default function Layout() {
   return (
     <BrowserRouter>
-      <Navbar />
+      <div className="pt-5 header-6">
+        <Navbar />
 
-      <div className="py-5 header-6">
         {/* <div
           style={{
             position: "fixed",
@@ -42,9 +42,9 @@ export default function Layout() {
           )}
           <Route path="*" element={<Error404 />} />
         </Routes>
-      </div>
 
-      <Footer />
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }

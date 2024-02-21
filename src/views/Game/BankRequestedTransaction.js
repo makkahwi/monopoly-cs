@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import { Button, ButtonGroup, Table, UncontrolledTooltip } from "reactstrap";
+import * as API from "../../api/apis";
 
 export default function BankRequestedTransaction() {
   const [data, setData] = useState([]);
@@ -20,7 +21,7 @@ export default function BankRequestedTransaction() {
   ];
 
   useEffect(() => {
-    setData([{ to: "Player X", amount: "100", note: "Round" }]);
+    API.bankRequests().then((res) => setData(res));
   }, []);
 
   return (
